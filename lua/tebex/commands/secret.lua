@@ -3,7 +3,7 @@ Msg( "// Command tebex:secret      //\n" )
 
 Tebex.commands["secret"] = function(ply, args)
     if (args[3] == nil) then
-        Tebex.err( "No secret provided" )
+        Tebex.msg( "No secret provided" )
     end
 
     config:set("secret", args[3])
@@ -18,9 +18,9 @@ Tebex.commands["secret"] = function(ply, args)
         TebexInformation.serverId = response["server"]["id"]
         TebexInformation.serverName = response["server"]["name"]
 
-        Tebex.ok("Your secret key has been validated! Webstore Name: " .. TebexInformation.name);
+        Tebex.msg("Your secret key has been validated! Webstore Name: " .. TebexInformation.name);
     end, function(body)
-        Tebex.err (body["error_message"])
+        Tebex.msg(body["error_message"])
     end)
 
     apiclient = nil

@@ -13,13 +13,13 @@ Tebex.commands["info"] = function(ply, args)
         TebexInformation.serverId = response["server"]["id"]
         TebexInformation.serverName = response["server"]["name"]
 
-        Tebex.ok("Server Information");
-        Tebex.ok("=================");
-        Tebex.ok("Server " .. TebexInformation.serverName .. " for webstore " .. TebexInformation.name);
-        Tebex.ok("Server prices are in " .. TebexInformation.currency);
-        Tebex.ok("Webstore domain: " .. TebexInformation.domain);
+        Tebex.msg("Server Information");
+        Tebex.msg("=================");
+        Tebex.msg("Server " .. TebexInformation.serverName .. " for webstore " .. TebexInformation.name);
+        Tebex.msg("Server prices are in " .. TebexInformation.currency);
+        Tebex.msg("Webstore domain: " .. TebexInformation.domain);
     end, function(body)
-        Tebex.err (body["error_message"])
+        Tebex.msg(body["error_message"])
     end)
 
     apiclient = nil

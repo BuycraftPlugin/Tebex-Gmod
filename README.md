@@ -10,7 +10,7 @@ This library is currently in development, so should be considered alpha - functi
 
 ## Support
 
-Please don't raise support issues on this repo. For support with the plugin or any Tebex issues, please [contact support](http://help.buycraft.net)
+Please don't raise support issues on this repo. For support with the plugin or any Tebex issues, please [contact support](https://www.tebex.io/contact)
 
 ## Contributing
 

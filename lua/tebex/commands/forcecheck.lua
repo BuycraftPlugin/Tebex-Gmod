@@ -2,7 +2,7 @@ Msg( "// Command tebex:forcecheck  //\n" )
 
 
 Tebex.commands["forcecheck"] = function(ply, args)
-    Tebex.warn("Checking for commands to be executed...");
+    Tebex.msg("Checking for commands to be executed...");
     apiclient = TebexApiClient:init(config:get("baseUrl"), config:get("secret"))
     apiclient:get("/queue", function(response)
 
@@ -21,7 +21,7 @@ Tebex.commands["forcecheck"] = function(ply, args)
             targetPlayer = player.GetBySteamID64(steamId)
 
             if (targetPlayer and targetPlayer:IsFullyAuthenticated()) then
-                Tebex.warn("Execute commands for " .. targetPlayer:Name() .. "(ID: " .. targetPlayer:SteamID64() .. ")");
+                Tebex.msg("Execute commands for " .. targetPlayer:Name() .. "(ID: " .. targetPlayer:SteamID64() .. ")");
                 TebexCommandRunner.doOnlineCommands(plr["id"], targetPlayer:Name(), targetPlayer:SteamID64());
             end
 

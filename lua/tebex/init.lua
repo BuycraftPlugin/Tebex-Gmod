@@ -5,16 +5,8 @@ if not Tebex then
 	Tebex.nextCheck = 15 * 60
 	Tebex.lastCalled = os.time() - 14 * 60
 
-	Tebex.warn = function ( msg )
-		print (msg)
-	end
-
-	Tebex.err = function ( msg )
-		print (msg)
-	end
-
-	Tebex.ok = function ( msg )
-		print (msg)
+	Tebex.msg = function(msg)
+		print(msg)
 	end
 
 	if not Tebex.consoleCommand then Tebex.consoleCommand = game.ConsoleCommand end
@@ -66,11 +58,11 @@ if not Tebex then
 	end
 
 
-	hook.Add( "Initialize", "StartUp", function()
+	hook.Add( "Initialize", "TebexStartUp", function()
 		if (config:get("secret") == "") then
-			Tebex.err( "You have not yet defined your secret key. Use tebex:secret <secret> to define your key" )
+			Tebex.msg( "You have not yet defined your secret key. Use tebex:secret <secret> to define your key" )
 		else
-			Tebex.ok("Starting Tebex_Gmod 0.1")
+			Tebex.msg("Starting Tebex_Gmod 0.2")
 			timer.Simple(5, function()
 				Tebex.commands["info"](nil, {":", "info"})
 			end)

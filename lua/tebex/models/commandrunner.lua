@@ -13,7 +13,7 @@ TebexCommandRunner.doOfflineCommands = function()
         for key,cmd in pairs(commands) do
             commandToRun = TebexCommandRunner.buildCommand(cmd["command"], cmd["player"]["name"], cmd["player"]["uuid"], cmd["player"]["meta"]["steamID"]);
 
-            Tebex.warn("Run command " .. commandToRun)
+            Tebex.msg("Run command " .. commandToRun)
             game.ConsoleCommand( commandToRun )
 
             table.insert(executedCommands, cmd["id"])
@@ -25,7 +25,7 @@ TebexCommandRunner.doOfflineCommands = function()
             end
         end
 
-        Tebex.ok(exCount .. " offline commands executed")
+        Tebex.msg(exCount .. " offline commands executed")
         if (exCount % TebexCommandRunner.deleteAfter > 0) then
             TebexCommandRunner.deleteCommands(executedCommands)
             executedCommands = {}
@@ -38,7 +38,7 @@ TebexCommandRunner.doOfflineCommands = function()
 end
 
 TebexCommandRunner.doOnlineCommands = function(playerPluginId, playerName, playerId)
-    Tebex.warn("Running online commands for " .. playerName .. " (" .. playerId .. ")");
+    Tebex.msg("Running online commands for " .. playerName .. " (" .. playerId .. ")");
     apiclient = TebexApiClient:init(config:get("baseUrl"), config:get("secret"))
     apiclient:get("/queue/online-commands/" .. playerPluginId, function(response)
         commands = response.commands
@@ -48,7 +48,7 @@ TebexCommandRunner.doOnlineCommands = function(playerPluginId, playerName, playe
         for key,cmd in pairs(commands) do
             commandToRun = TebexCommandRunner.buildCommand(cmd["command"], playerName, playerId, response.player.meta.steamID)
 
-            Tebex.warn("Run command " .. commandToRun)
+            Tebex.msg("Run command " .. commandToRun)
             game.ConsoleCommand( commandToRun )
 
             table.insert(executedCommands, cmd["id"])
@@ -60,7 +60,7 @@ TebexCommandRunner.doOnlineCommands = function(playerPluginId, playerName, playe
             end
         end
 
-        Tebex.ok(exCount .. " online commands executed for " .. playerName)
+        Tebex.msg(exCount .. " online commands executed for " .. playerName)
         if (exCount % TebexCommandRunner.deleteAfter > 0) then
             TebexCommandRunner.deleteCommands(executedCommands)
             executedCommands = {}

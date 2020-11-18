@@ -36,7 +36,7 @@ function TebexConfig:init()
 end
 
 function TebexConfig:get(key)
-    if (self.cfg[key] == nil) then
+    if !IsValid(self.cfg[key]) then
         return false
     end
 
